@@ -1,5 +1,5 @@
 # vue-image-viewer-component
-Vue.js component of image viewer using viewer.js
+Vue.js component of image viewer using [v-viewer](https://github.com/mirari/v-viewer)
 
 ## Installation
 
