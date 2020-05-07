@@ -10,7 +10,7 @@ npm i castling/vue-image-viewer-component
 ## Usage:
 
 ```javascript
-import ImageViewer from 'castling/vue-image-viewer-component'
+import ImageViewer from 'vue-image-viewer-component'
 
 Vue.comonent('image-viewer', ImageViewer)
 ```
