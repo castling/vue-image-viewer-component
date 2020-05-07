@@ -1,0 +1,12 @@
+{
+  "name": "vue-image-viewer-component",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.vue",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
