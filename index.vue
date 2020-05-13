@@ -1,19 +1,25 @@
 <template>
   <div class="image-viewer" @contextmenu.prevent>
-    <div class="image-viewer__view" v-viewer>
+    <viewer class="image-viewer__view"
+      :images="images"
+      @inited="inited"
+      ref="viewer"
+      rebuild
+      >
       <img class="image-viewer__view__image" v-for="(src,i) in images" :key="src"
         :class="{active:i+1==page}"
         :src="src"
       >
-    </div>
+    </viewer>
   </div>
 </template>
 
 <script>
-import Viewer from 'v-viewer/src/directive.js'
+import Viewer from 'v-viewer/src/component.vue'
+import 'viewerjs/dist/viewer.css'
 
 export default {
-  directives: {
+  components: {
     Viewer,
   },
   props: {
@@ -33,7 +39,6 @@ export default {
   watch: {
   },
   mounted() {
-    this.viewer = this.$el.querySelector('.image-viewer__view').$viewer
     this.$el.querySelector('.image-viewer__view').addEventListener('show',() => {
       this.$emit('show')
     })
@@ -42,6 +47,9 @@ export default {
     })
   },
   methods: {
+    inited(viewer) {
+      this.viewer = viewer
+    },
   },
 }
 </script>
