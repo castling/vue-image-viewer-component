@@ -65,6 +65,7 @@ export default {
     &__image {
       width: 100%;
       height: 100%;
+      max-height: 90vh;
       object-fit: contain;
       padding: 1rem;
       background-color: rgb(230,230,230);
