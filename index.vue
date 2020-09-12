@@ -61,9 +61,9 @@ export default {
   width: 100%;
   height: 100%;
   min-width: 100%;
-  min-height: 100px;
+  min-height: 200px;
 
-  .no-image::after {
+  &.no-image::after {
     content: "NO PAGE";
     position: absolute;
     width: 100%;
