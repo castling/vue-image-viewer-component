@@ -1,5 +1,7 @@
 <template>
-  <div class="image-viewer" @contextmenu.prevent>
+  <div class="image-viewer" @contextmenu.prevent
+    :class="{ 'no-image': images==null || images.length==0 }"
+    >
     <viewer class="image-viewer__view"
       :images="images"
       @inited="inited"
@@ -58,6 +60,25 @@ export default {
 .image-viewer {
   width: 100%;
   height: 100%;
+  min-width: 100%;
+  min-height: 100px;
+
+  .no-image::after {
+    content: "NO PAGE";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Verdana;
+    font-size: 2.5rem;
+    font-weight: 800;
+  }
+
   &__view {
     width: 100%;
     height: 100%;
