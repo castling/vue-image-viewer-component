@@ -1,6 +1,6 @@
 <template>
   <div class="image-viewer" @contextmenu.prevent
-    :class="{ 'no-image': images==null || images.length==0 }"
+    :class="{ 'no-image': noImage || images==null || images.length==0 }"
     >
     <viewer class="image-viewer__view"
       :images="images"
@@ -9,6 +9,8 @@
       rebuild
       >
       <img class="image-viewer__view__image" v-for="(src,i) in images" :key="src"
+        @error="noImage = true"
+        @success="noImage = false"
         :class="{active:i+1==page}"
         :src="src"
       >
@@ -36,6 +38,7 @@ export default {
   },
   data() {
     return {
+      noImage: false,
     }
   },
   watch: {
@@ -52,6 +55,9 @@ export default {
     inited(viewer) {
       this.viewer = viewer
     },
+    setNoImage() {
+      this.noImage = true
+    },
   },
 }
 </script>
@@ -63,20 +69,26 @@ export default {
   min-width: 100%;
   min-height: 200px;
 
-  &.no-image::after {
-    content: "NO PAGE";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Verdana;
-    font-size: 2.5rem;
-    font-weight: 800;
+  &.no-image {
+    &::after {
+      content: "NO PAGE";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Verdana;
+      font-size: 2.5rem;
+      font-weight: 800;
+    }
+
+    .image-viewer__view__image {
+      display: none;
+    }
   }
 
   &__view {
